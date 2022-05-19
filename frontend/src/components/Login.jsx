@@ -1,10 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-unresolved
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// eslint-disable-next-line import/no-unresolved
 import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
 
 export default function Login() {
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const formik = useFormik({
@@ -36,7 +40,7 @@ export default function Login() {
                 .catch((errors) => {
                     console.log(errors);
                     message = errors.message;
-                    if (message == 'Request failed with status code 500') {
+                    if (message === 'Request failed with status code 500') {
                         alert('Server is not started');
                     } else {
                         document.querySelector('#msg').innerHTML =
@@ -59,6 +63,7 @@ export default function Login() {
     });
 
     return (
+        // eslint-disable-next-line react/jsx-filename-extension
         <div className="body  ">
             <div className="login-nav">
                 <Navbar expand="md" light>
@@ -66,8 +71,8 @@ export default function Login() {
                         <h5 className="brand">Electronics Inventory</h5>
                     </NavbarBrand>
                     <Nav navbar>
-                        <NavItem></NavItem>
-                        <NavItem className="text-right"></NavItem>
+                        <NavItem />
+                        <NavItem className="text-right" />
                     </Nav>
                 </Navbar>
             </div>
@@ -99,7 +104,8 @@ export default function Login() {
                     <p className="team1-validation-error">
                         {formik.errors.password ? formik.errors.password : null}
                     </p>
-                    <p id="msg" className="text-danger"></p>
+                    <p id="msg" className="text-danger" />
+                    {/* eslint-disable-next-line react/button-has-type */}
                     <button className="mt-5 mb-3">Submit</button>
                 </form>
             </div>

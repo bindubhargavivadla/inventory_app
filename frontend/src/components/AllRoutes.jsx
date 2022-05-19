@@ -1,13 +1,14 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EditProduct from './EditProduct';
 import Login from './Login';
 import Main from './Main';
-import ProductForm from './ProductForm';
 import ProductList from './ProductList';
 import ProductsReducer from './ProductReducer';
 import ProductsContext from './ProductContext';
@@ -22,9 +23,10 @@ export default function AllRoutes() {
         loggedIn: JSON.parse(localStorage.getItem('loggedin')),
     };
     const [state, dispatch] = useReducer(ProductsReducer, initialState);
+
     const getProducts = async () => {
         try {
-            let response = await axios
+            const response = await axios
                 .create({
                     headers: {
                         token: `Bearer ${JSON.parse(
@@ -39,10 +41,9 @@ export default function AllRoutes() {
             dispatch({ type: 'set-products', productList: response.data });
             setStateStatus(true);
         } catch (error) {
-            if (error.message == 'Invalid JWT Token') {
+            if (error.message === 'Invalid JWT Token') {
                 localStorage.clear();
                 alert('Session Expired');
-                navigate('/');
             }
             console.log(error);
         }
@@ -64,7 +65,6 @@ export default function AllRoutes() {
                         <Route path="/main" element={<Main />} />
                         <Route path="/" element={<Login />} />
                         <Route path="/edit/:id" element={<EditProduct />} />
-                        <Route path="/add" element={<ProductForm />} />
                         <Route path="/list" element={<ProductList />} />
                     </Routes>
                 </BrowserRouter>

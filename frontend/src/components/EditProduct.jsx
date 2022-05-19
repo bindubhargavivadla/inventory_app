@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
-import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { Link, useParams, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-unresolved
 import { Button } from 'reactstrap';
 import Main from './Main';
+
 export default function EditProduct() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -13,8 +17,9 @@ export default function EditProduct() {
     const [createdBy, setCreatedBy] = useState();
     const [file, setFile] = useState();
     const urlParams = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
-        //get a product and set all details
+        // get a product and set all details
         axios
             .create({
                 headers: {
@@ -42,14 +47,13 @@ export default function EditProduct() {
                 navigate('/');
             });
     }, []);
-    const navigate = useNavigate();
 
     // converting image file as an object
     const saveFile = (e) => {
         setFile(e.target.files[0]);
         // setFileName(e.target.files[0].name);
     };
-    //update the product
+    // update the product
     function updateDetails(e) {
         e.preventDefault();
         const user = JSON.parse(localStorage.getItem('regtoken user'));
@@ -62,8 +66,8 @@ export default function EditProduct() {
         formData.append('image', file);
         formData.append('createdBy', createdBy);
         formData.append('updatedBy', updatedBy);
-        console.log('formData' + formData);
-        //updating the product
+        console.log(`formData${formData}`);
+        // updating the product
         axios
             .create({
                 headers: {
@@ -84,10 +88,11 @@ export default function EditProduct() {
                 localStorage.removeItem('loggedIn');
                 navigate('/');
             });
-        //navigate to editproduct list page
+        // navigate to editproduct list page
         navigate('/list');
     }
     return (
+        // eslint-disable-next-line react/jsx-filename-extension
         <div>
             <Main />
             <div className="p-5">
@@ -99,6 +104,7 @@ export default function EditProduct() {
                 >
                     <img src={image} alt={name} className="imgEdit" />
                     <div className="align-left">
+                        {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                         <label>
                             <b>Title</b>
                         </label>
