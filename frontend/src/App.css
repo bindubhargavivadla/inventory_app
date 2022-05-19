@@ -1,0 +1,141 @@
+.App {
+    text-align: center;
+    background-color: #b9b7bd;
+    height: 100%;
+}
+.img-box {
+    width: 120px;
+    height: 200px;
+}
+.img-box:hover {
+    padding: 10px 20px;
+}
+.body {
+    /* background: linear-gradient(to bottom, #e5c6dd, #dbdffd, #82dbd8); */
+    height: 100vh;
+}
+.textLeft {
+    text-align: left;
+    padding-left: 30px;
+}
+.card-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: gray;
+}
+.addItem {
+    background-color: #e9d5da;
+}
+.imgEdit {
+    width: 300px;
+    height: 350px;
+}
+
+/* coppied */
+input {
+    padding: 15px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid rgba(101, 104, 101, 0.733);
+    margin: 20px;
+}
+textarea {
+    padding: 15px;
+    width: 300px;
+    border: none;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+button {
+    border: none;
+    padding: 10px;
+    background-color: rgb(2, 107, 107);
+    color: antiquewhite;
+    border-radius: 10px;
+    width: 120px;
+    margin: auto;
+    margin-top: 20px;
+}
+/* .login-form {
+    margin-top: 20vh;
+} */
+.delBtn {
+    margin: 0;
+    background-color: #b93b3b;
+    color: white;
+    padding: none;
+    height: 50px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.editBtn {
+    margin: 0;
+    background-color: rgb(45, 72, 45);
+    padding: none;
+    height: 50px;
+
+    border-radius: 5px;
+    margin: 10px;
+}
+.linkDec {
+    text-decoration: none;
+    color: white;
+}
+.delAll {
+    background-color: brown;
+}
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #04aa6d;
+    color: white;
+}
+.form {
+    width: 500px;
+    margin: auto;
+    box-shadow: 10px 10px 12px 6px rgba(7, 7, 7, 0.541);
+    background-color: white;
+    padding: 10px;
+}
+.formMargin {
+    padding: 10px;
+    text-align: left;
+}
+h1 {
+    font-variant: small-caps;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 45px;
+}
+.login-nav {
+    background-color: #43353a;
+    font-variant: small-caps;
+    color: #ddd;
+}
+.brand {
+    color: #ddd;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+.heading {
+    font-weight: 300px;
+}
