@@ -94,6 +94,7 @@ export default function ProductList() {
                                     className="img-box"
                                     width="100%"
                                 />
+                                <hr />
                                 <CardTitle tag="h5" className="m-2">
                                     {val.name}
                                 </CardTitle>

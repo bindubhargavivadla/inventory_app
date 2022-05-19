@@ -115,7 +115,9 @@ exports.updateUser = [
 ];
 //token generation
 exports.login = async (req, res) => {
+    console.log('hello', req.body);
     const { email, password } = req.body;
+
     try {
         const user = await Users.findOne({
             where: { email: `${email}` },

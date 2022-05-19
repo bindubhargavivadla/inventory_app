@@ -16,13 +16,13 @@ export default function Login() {
             email: '',
             password: '',
         },
-        async onSubmit(values) {
+        async onSubmit() {
             console.log('form submit');
             let message = 'Server denied';
             await axios
                 .post('/users/login', {
-                    email: values.email,
-                    password: values.password,
+                    email: 'mani@gmail.com',
+                    password: '654321',
                 })
                 .then((response) => {
                     console.log(response.data);
@@ -85,7 +85,7 @@ export default function Login() {
                 >
                     <h1 className="heading">Sign in</h1>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         onChange={formik.handleChange}
                         value={formik.values.email}
@@ -101,7 +101,7 @@ export default function Login() {
                         value={formik.values.password}
                         placeholder="password"
                     />
-                    <p className="team1-validation-error">
+                    <p className="">
                         {formik.errors.password ? formik.errors.password : null}
                     </p>
                     <p id="msg" className="text-danger" />

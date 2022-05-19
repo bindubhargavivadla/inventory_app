@@ -1,20 +1,22 @@
+/* eslint-disable no-empty */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-duplicates */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import axios from 'axios';
 import {
     Button,
     Nav,
     Navbar,
     NavbarBrand,
-    NavItem,
-    NavLink,
     Modal,
     ModalHeader,
     ModalBody,
     ModalFooter,
 } from 'reactstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { useReducer } from 'react';
 import ProductsContext from './ProductContext';
 
 export default function Main() {
@@ -24,7 +26,8 @@ export default function Main() {
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState([]);
     const [file, setFile] = useState();
-    const { dispatch, state, getProducts } = useContext(ProductsContext);
+    // eslint-disable-next-line no-unused-vars
+    const { getProducts } = useContext(ProductsContext);
 
     const navigate = useNavigate();
 
@@ -32,11 +35,11 @@ export default function Main() {
     const saveFile = (e) => {
         setFile(e.target.files[0]);
     };
-    let addProduct = async (event) => {
+    const addProduct = async (event) => {
         event.preventDefault();
         const user = JSON.parse(localStorage.getItem('regtoken user'));
         const createdBy = user.id;
-        console.log('createdby' + createdBy);
+        console.log(`createdby${createdBy}`);
         console.log('file image', file);
         const formData = new FormData();
         formData.append('name', name);
@@ -46,16 +49,7 @@ export default function Main() {
         formData.append('image', file);
         formData.append('createdBy', createdBy);
         formData.append('updatedBy', createdBy);
-        console.log('formData' + formData);
-        let product = {
-            name: name,
-            quantity: quantity,
-            price: price,
-            image: file,
-            description: description,
-            createdBy: createdBy,
-            updatedBy: createdBy,
-        };
+        console.log(`formData${formData}`);
 
         // Posting the product data to the backend
         try {
@@ -70,25 +64,26 @@ export default function Main() {
                     },
                 }
             );
-            getProducts();
-            alert('Product added successfully');
-        } catch (error) {
-            if (error == 'TokenExpiredError') {
-                alert('Session Expired');
+            if (res.status === 0) {
+                alert(`Product ${name} already existed`);
+            } else {
+                alert('Product added successfully');
             }
-            localStorage.removeItem('regtoken');
-            localStorage.removeItem('regtoken user');
-            localStorage.removeItem('loggedIn');
-            navigate('/');
+            getProducts();
+        } catch (error) {
+            console.log(error);
+            if (error.response.status === 400) {
+                alert(`Product with ${name} name already existed`);
+            }
             console.log(error);
         }
         getProducts();
     };
-    //modal
+    // modal
     const toggle = () => {
         setModal(!modal);
     };
-    //logout
+    // logout
     const logout = () => {
         localStorage.clear();
         navigate('/');
@@ -117,7 +112,7 @@ export default function Main() {
                 </Navbar>
             </div>
             {/* Modal */}
-            <Modal fade={true} isOpen={modal} toggle={toggle} className="w-75">
+            <Modal fade isOpen={modal} toggle={toggle} className="w-75">
                 <ModalHeader
                     className="d-flex flex-column justify-content-center "
                     toggle={toggle}
@@ -189,12 +184,13 @@ export default function Main() {
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
-                            ></textarea>
+                            />
                             <br />
                             <ModalFooter
                                 toggle={toggle}
                                 className="d-flex justify-content-center"
                             >
+                                {/* eslint-disable-next-line react/button-has-type */}
                                 <button onClick={() => toggle()}>Add</button>
                             </ModalFooter>
                         </form>

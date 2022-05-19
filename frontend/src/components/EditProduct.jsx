@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
@@ -36,7 +37,11 @@ export default function EditProduct() {
                 setDescription(response.data.description);
                 setQuantity(response.data.quantity);
                 setImage(response.data.image);
-                setFile(response.data.image.slice(9));
+                if (response.data.image === null) {
+                    setFile('');
+                } else {
+                    setFile(response.data.image.slice(9));
+                }
                 setCreatedBy(response.data.createdBy);
             })
             .catch((error) => {
@@ -96,13 +101,18 @@ export default function EditProduct() {
         <div>
             <Main />
             <div className="p-5">
-                <h4 className="mt-1 mb-3">Update the details of Product</h4>
-
+                <h4 className="mb-5">Update the details of Product</h4>
                 <form
                     onSubmit={updateDetails}
                     className="text-left form formMargin p-3"
                 >
-                    <img src={image} alt={name} className="imgEdit" />
+                    {/*  eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+                    <img
+                        src={image}
+                        alt="Image is temporary unavaialable"
+                        className="imgEdit"
+                    />
+
                     <div className="align-left">
                         {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                         <label>
