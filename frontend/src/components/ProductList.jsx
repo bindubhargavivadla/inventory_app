@@ -43,7 +43,6 @@ export default function ProductList() {
         dispatch({ type: 'set-products', productList: products });
     };
     useEffect(() => {
-        console.log('product list');
         getAllProducts();
         getProducts();
     }, []);
@@ -83,7 +82,7 @@ export default function ProductList() {
                     <p>Clcik on Add Item! To add items</p>
                 </div>
             ) : (
-                <div className="row product-list mx-5 my-3">
+                <div className="row product-list mx-5 my-3 p-3">
                     {state.products.map((val, index) => (
                         <div className="mb-3 col-lg-4 col-md-5 col-sm-6 p-4 textLeft">
                             <Card body className="text-center">
@@ -117,7 +116,7 @@ export default function ProductList() {
 
                                     {/* eslint-disable-next-line react/button-has-type */}
                                     <button
-                                        className="delBtn w-50"
+                                        className="delBtn w-50 sm"
                                         onClick={(event) => {
                                             event.preventDefault();
                                             deleteProduct(index, val.id);

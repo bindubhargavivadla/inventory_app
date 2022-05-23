@@ -35,7 +35,6 @@ export default function AllRoutes() {
                     },
                 })
                 .get('/products');
-            console.log(response.data);
             setProducts(response.data);
 
             dispatch({ type: 'set-products', productList: response.data });

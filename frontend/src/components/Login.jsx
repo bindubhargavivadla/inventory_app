@@ -5,24 +5,39 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // eslint-disable-next-line import/no-unresolved
-import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import {
+    Form,
+    Input,
+    Button,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavItem,
+} from 'reactstrap';
 
 export default function Login() {
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const inputStyle = {
+        padding: '10px',
+        width: '400px',
+        border: 'none',
+        borderBottom: '2px solid rgba(101, 104, 101, 0.733)',
+        margin: 'auto',
+    };
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
-        async onSubmit() {
+        async onSubmit(values) {
             console.log('form submit');
             let message = 'Server denied';
             await axios
                 .post('/users/login', {
-                    email: 'mani@gmail.com',
-                    password: '654321',
+                    email: values.email,
+                    password: values.password,
                 })
                 .then((response) => {
                     console.log(response.data);
@@ -44,7 +59,7 @@ export default function Login() {
                         alert('Server is not started');
                     } else {
                         document.querySelector('#msg').innerHTML =
-                            '<p>incorrect Credentials</p>';
+                            '<p>Incorrect Credentials</p>';
                     }
 
                     setError(errors);
@@ -77,38 +92,49 @@ export default function Login() {
                 </Navbar>
             </div>
 
-            <div className=" login-form mt-5 d-flex align-items-center">
-                <form
-                    onSubmit={formik.handleSubmit}
-                    noValidate
-                    className="form"
+            <Form
+                onSubmit={formik.handleSubmit}
+                noValidate
+                className="form mt-5"
+            >
+                <h1 className="heading mb-4">Sign in</h1>
+                <Input
+                    style={inputStyle}
+                    type="email"
+                    name="email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    placeholder="Email"
+                    required
+                />
+                <p>{formik.errors.email ? formik.errors.email : null}</p>
+                <Input
+                    style={inputStyle}
+                    type="password"
+                    name="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    placeholder="password"
+                    required
+                />
+                <p>{formik.errors.password ? formik.errors.password : null}</p>
+                <div id="msg" className="text-danger"></div>
+                {/* eslint-disable-next-line react/button-has-type */}
+                <Button
+                    style={{
+                        border: 'none',
+                        padding: '10px',
+                        color: 'white',
+                        width: '120px',
+                        borderRadius: '5px',
+                        backgroundColor: 'rgb(2, 107, 107)',
+                    }}
+                    className="mt-5 mb-3"
+                    type="submit"
                 >
-                    <h1 className="heading">Sign in</h1>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        placeholder="Email"
-                    />
-                    <p className="team1-validation-error">
-                        {formik.errors.email ? formik.errors.email : null}
-                    </p>
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        placeholder="password"
-                    />
-                    <p className="">
-                        {formik.errors.password ? formik.errors.password : null}
-                    </p>
-                    <p id="msg" className="text-danger" />
-                    {/* eslint-disable-next-line react/button-has-type */}
-                    <button className="mt-5 mb-3">Submit</button>
-                </form>
-            </div>
+                    Submit
+                </Button>
+            </Form>
         </div>
     );
 }

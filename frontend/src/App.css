@@ -32,13 +32,7 @@
 .imgEdit {
     width: 300px;
     height: 350px;
-}
-input {
-    padding: 15px;
-    width: 300px;
-    border: none;
-    border-bottom: 2px solid rgba(101, 104, 101, 0.733);
-    margin: 20px;
+    border: 3px solid gray;
 }
 textarea {
     padding: 15px;
@@ -48,7 +42,7 @@ textarea {
     margin: 10px;
 }
 
-button {
+.button {
     border: none;
     padding: 10px;
     background-color: rgb(2, 107, 107);
@@ -63,7 +57,8 @@ button {
     background-color: #b93b3b;
     color: white;
     padding: none;
-    height: 50px;
+    height: 45px;
+    border: none;
     border-radius: 5px;
     margin: 10px;
 }
@@ -71,7 +66,7 @@ button {
     margin: 0;
     background-color: rgb(2, 107, 107);
     padding: none;
-    height: 50px;
+    height: 45px;
     border-radius: 5px;
     margin: 10px;
 }
@@ -93,6 +88,7 @@ button {
     padding: 10px;
     text-align: left;
 }
+
 h1 {
     font-variant: small-caps;
     font-weight: 300;

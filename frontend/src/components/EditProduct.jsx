@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { Link, useParams, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
-import { Button } from 'reactstrap';
+import { Button, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import Main from './Main';
 
 export default function EditProduct() {
@@ -102,78 +102,105 @@ export default function EditProduct() {
             <Main />
             <div className="p-5">
                 <h4 className="mb-5">Update the details of Product</h4>
-                <form
-                    onSubmit={updateDetails}
-                    className="text-left form formMargin p-3"
-                >
-                    {/*  eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-                    <img
-                        src={image}
-                        alt="Image is temporary unavaialable"
-                        className="imgEdit"
-                    />
+                <Row>
+                    <Col right>
+                        <img
+                            src={image}
+                            alt="Image is temporary unavaialable"
+                            className="imgEdit"
+                        />
+                    </Col>
+                    <Col>
+                        <Form
+                            onSubmit={updateDetails}
+                            className="text-left form formMargin p-3"
+                        >
+                            {/*  eslint-disable-next-line jsx-a11y/img-redundant-alt */}
 
-                    <div className="align-left">
-                        {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>
-                            <b>Title</b>
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control mb-2"
-                            value={name || ''}
-                            onInput={(e) => setName(e.target.value)}
-                        />
-                        <label>
-                            <b>Quantity</b>
-                        </label>
-                        <input
-                            type="number"
-                            className="form-control mb-2"
-                            min={1}
-                            value={quantity || ''}
-                            onInput={(e) => setQuantity(e.target.value)}
-                        />
-                        <label>
-                            <b>Price</b>
-                        </label>
-                        <input
-                            type="number"
-                            className="form-control mb-2"
-                            min={1}
-                            value={price || ''}
-                            onInput={(e) => setPrice(e.target.value)}
-                        />
-                        <label>
-                            <b>Image</b>
-                        </label>
-                        <input
-                            type="file"
-                            className="form-control mb-2"
-                            min={1}
-                            onChange={saveFile}
-                        />
-                        <label>
-                            <b>About Product</b>
-                        </label>
-                        <textarea
-                            type="text"
-                            className="form-control mb-2"
-                            value={description || ''}
-                            onInput={(e) => setDescription(e.target.value)}
-                        />
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <Button className="m-2" color="success">
-                            Save
-                        </Button>
-                        <Link to="/list">
-                            <Button className="m-2" color="warning">
-                                Go back
-                            </Button>
-                        </Link>
-                    </div>
-                </form>
+                            <div className="align-left">
+                                {/*  eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                                <FormGroup>
+                                    <Label>
+                                        <b>Title</b>
+                                    </Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        className="form-control mb-2"
+                                        value={name || ''}
+                                        onInput={(e) => setName(e.target.value)}
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label>
+                                        <b>Quantity</b>
+                                    </Label>
+                                    <Input
+                                        required
+                                        type="number"
+                                        className="form-control mb-2"
+                                        min={1}
+                                        value={quantity || ''}
+                                        onInput={(e) =>
+                                            setQuantity(e.target.value)
+                                        }
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label>
+                                        <b>Price</b>
+                                    </Label>
+                                    <Input
+                                        required
+                                        type="number"
+                                        className="form-control mb-2"
+                                        min={1}
+                                        value={price || ''}
+                                        onInput={(e) =>
+                                            setPrice(e.target.value)
+                                        }
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label>
+                                        <b>Image</b>
+                                    </Label>
+                                    <Input
+                                        required
+                                        type="file"
+                                        className="form-control mb-2"
+                                        min={1}
+                                        onChange={saveFile}
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label>
+                                        <b>About Product</b>
+                                    </Label>
+                                    <textarea
+                                        required
+                                        type="text"
+                                        className="form-control mb-2"
+                                        value={description || ''}
+                                        onInput={(e) =>
+                                            setDescription(e.target.value)
+                                        }
+                                    />
+                                </FormGroup>
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <Button className="m-2" color="success">
+                                    Save
+                                </Button>
+                                <Link to="/list">
+                                    <Button className="m-2" color="warning">
+                                        Go back
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Form>
+                    </Col>
+                </Row>
             </div>
         </div>
     );

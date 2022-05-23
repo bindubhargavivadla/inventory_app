@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 const ProductReducer = (state, action) => {
-    console.log(state);
-    console.log(action);
     if (action.type === 'set-products') {
         return { products: [...action.productList] };
     }
@@ -19,9 +17,6 @@ const ProductReducer = (state, action) => {
         return state;
     }
     if (action.type === 'delete') {
-        console.log('delte index');
-        console.log(action.index);
-        console.log(state.products[action.index]);
         const filteredData = state.products.filter((_val, index) => {
             if (index !== action.index) {
                 return true;

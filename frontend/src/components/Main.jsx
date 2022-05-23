@@ -1,12 +1,15 @@
 /* eslint-disable no-empty */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-duplicates */
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/Label-has-associated-control */
 import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
 import {
+    Form,
     Button,
+    Input,
+    Label,
     Nav,
     Navbar,
     NavbarBrand,
@@ -14,6 +17,7 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
+    FormGroup,
 } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -85,8 +89,11 @@ export default function Main() {
     };
     // logout
     const logout = () => {
-        localStorage.clear();
-        navigate('/');
+        const text = 'Do you want to logout';
+        if (confirm(text) === true) {
+            localStorage.clear();
+            navigate('/');
+        }
     };
     return (
         <div>
@@ -117,84 +124,100 @@ export default function Main() {
                     className="d-flex flex-column justify-content-center "
                     toggle={toggle}
                 >
-                    Add Product
+                    <h2>Add Product</h2>
                 </ModalHeader>
                 <ModalBody className="">
-                    <div>
-                        <form onSubmit={addProduct} className="p-5 border">
-                            <label>
+                    <Form onSubmit={addProduct} className="p-5 border">
+                        <FormGroup>
+                            <Label>
                                 <b>Product Name</b>
-                            </label>
-                            <br />
-                            <input
+                            </Label>
+                            <Input
+                                required
                                 type="text"
                                 name="name"
                                 placeholder="Product Name"
-                                className="w-100 mb-2"
+                                className="w-100 my-2"
                                 onChange={(e) => {
                                     setName(e.target.value);
                                 }}
                             />
-                            <br />
-                            <label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>
                                 <b>quantity</b>
-                            </label>
-                            <br />
-                            <input
+                            </Label>
+                            <Input
+                                required
                                 type="number"
                                 name="quantity"
-                                className="w-100 mb-2"
+                                className="w-100 my-2"
                                 onChange={(e) => {
                                     setQuantity(e.target.value);
                                 }}
                             />
-                            <br />
-                            <label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>
                                 <b>Price</b>
-                            </label>
-                            <br />
-                            <input
+                            </Label>
+                            <Input
+                                required
                                 type="number"
                                 name="price"
-                                className="w-100 mb-2"
+                                className="w-100 my-2"
                                 onChange={(e) => {
                                     setPrice(e.target.value);
                                 }}
                             />
-                            <br />
-                            <label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>
                                 <b>Image</b>
-                            </label>
-                            <br />
-                            <input
+                            </Label>
+                            <Input
+                                required
                                 type="file"
                                 name="image"
-                                className="w-100 mb-2"
+                                className="w-100 my-2"
                                 onChange={saveFile}
                             />
-                            <br />
-                            <label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>
                                 <b>Description</b>
-                            </label>
-                            <br />
+                            </Label>
                             <textarea
+                                required
                                 name="description"
-                                className="w-100 mb-2"
+                                className="w-100 my-2"
                                 placeholder="Description"
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
                             />
-                            <br />
-                            <ModalFooter
-                                toggle={toggle}
-                                className="d-flex justify-content-center"
+                        </FormGroup>
+                        <br />
+                        <ModalFooter
+                            toggle={toggle}
+                            className="d-flex justify-content-center"
+                        >
+                            {/* eslint-disable-next-line react/button-has-type */}
+                            <Button
+                                onClick={() => toggle()}
+                                style={{
+                                    border: 'none',
+                                    padding: '10px',
+                                    color: 'white',
+                                    width: '120px',
+                                    borderRadius: '5px',
+                                    backgroundColor: 'rgb(2, 107, 107)',
+                                }}
                             >
-                                {/* eslint-disable-next-line react/button-has-type */}
-                                <button onClick={() => toggle()}>Add</button>
-                            </ModalFooter>
-                        </form>
-                    </div>
+                                Add
+                            </Button>
+                        </ModalFooter>
+                    </Form>
                 </ModalBody>
             </Modal>
         </div>
